@@ -25,17 +25,20 @@ A RESTful API for managing tasks with user authentication and authorization buil
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/Taha-Aaqib/task-manangment-api.git
 cd task-managment-api
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create a `.env` file in the root directory:
+
 ```env
 JWT_SECRET=your_secret_key_here
 JWT_EXPIRES_IN=1d
@@ -44,11 +47,13 @@ JWT_EXPIRES_IN=1d
 4. Make sure MongoDB is running locally on port 27017
 
 5. (Optional) Seed the database:
+
 ```bash
 node seed.js
 ```
 
 6. Start the server:
+
 ```bash
 node server.js
 ```
@@ -60,6 +65,7 @@ The server will run on `http://localhost:3000`
 ### Authentication Routes
 
 #### Register User
+
 ```http
 POST /auth/register
 Content-Type: application/json
@@ -72,6 +78,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "message": "User registered successfully",
@@ -80,6 +87,7 @@ Content-Type: application/json
 ```
 
 #### Login
+
 ```http
 POST /auth/login
 Content-Type: application/json
@@ -91,6 +99,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Login successful",
@@ -101,17 +110,20 @@ Content-Type: application/json
 ### Task Routes (Protected)
 
 All task routes require authentication. Include the JWT token in the Authorization header:
+
 ```
 Authorization: Bearer <your_token_here>
 ```
 
 #### Get All Tasks
+
 ```http
 GET /tasks
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -126,6 +138,7 @@ Authorization: Bearer <token>
 ```
 
 #### Create Task
+
 ```http
 POST /tasks
 Authorization: Bearer <token>
@@ -139,6 +152,7 @@ Content-Type: application/json
 ```
 
 #### Update Task
+
 ```http
 PUT /tasks/:id
 Authorization: Bearer <token>
@@ -152,12 +166,14 @@ Content-Type: application/json
 ```
 
 #### Delete Task
+
 ```http
 DELETE /tasks/:id
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Task deleted successfully"
@@ -186,10 +202,10 @@ task-managment-api/
 
 ## Environment Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `JWT_SECRET` | Secret key for JWT signing | `supersecretkey123` |
-| `JWT_EXPIRES_IN` | Token expiration time | `1d`, `7d`, `24h` |
+| Variable         | Description                | Example             |
+| ---------------- | -------------------------- | ------------------- |
+| `JWT_SECRET`     | Secret key for JWT signing | `supersecretkey123` |
+| `JWT_EXPIRES_IN` | Token expiration time      | `1d`, `7d`, `24h`   |
 
 ## Authentication Flow
 
@@ -207,6 +223,7 @@ task-managment-api/
 ## Testing with cURL
 
 **Register:**
+
 ```bash
 curl -X POST http://localhost:3000/auth/register \
   -H "Content-Type: application/json" \
@@ -214,6 +231,7 @@ curl -X POST http://localhost:3000/auth/register \
 ```
 
 **Login:**
+
 ```bash
 curl -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
@@ -221,12 +239,14 @@ curl -X POST http://localhost:3000/auth/login \
 ```
 
 **Get Tasks:**
+
 ```bash
 curl -X GET http://localhost:3000/tasks \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 ```
 
 **Create Task:**
+
 ```bash
 curl -X POST http://localhost:3000/tasks \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
